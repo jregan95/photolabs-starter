@@ -16,10 +16,18 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
+const renderNumberOfPhotos = function(n) {
+  let arrOfPhotos = []
+  for(let y = 0; y < n; y++) {
+    arrOfPhotos.push(<PhotoListItem photo={sampleDataForPhotoListItem} />)
+  }
+  return arrOfPhotos;
+}
+
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem key={sampleDataForPhotoListItem.id} photo={sampleDataForPhotoListItem} />
+      {renderNumberOfPhotos(3)}
     </div>
   );
 };
