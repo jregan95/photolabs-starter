@@ -63,11 +63,10 @@ const displayPhotoListItems = (data) => {
    return <PhotoListItem key={photo.id} photo={photo} />
   })
 }
-
-//LARRY AI - Can you help? I am unsure what is being asked. Nothing shows on my page? 
+ 
 const PhotoList = () => {
   return (
-    <ul className="photo-list">
+    <ul className="top-nav-bar__topic-list">
       {displayPhotoListItems(sampleDataForPhotoList)}
     </ul>
   );
