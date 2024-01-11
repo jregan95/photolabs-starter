@@ -19,7 +19,7 @@ const sampleDataForPhotoListItem = {
 const renderNumberOfPhotos = function(n) {
   let arrOfPhotos = []
   for(let y = 0; y < n; y++) {
-    arrOfPhotos.push(<PhotoListItem photo={sampleDataForPhotoListItem} />)
+    arrOfPhotos.push(<PhotoListItem key={y} photo={sampleDataForPhotoListItem} />)
   }
   return arrOfPhotos;
 }
