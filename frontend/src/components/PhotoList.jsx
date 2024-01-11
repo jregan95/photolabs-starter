@@ -59,8 +59,8 @@ const sampleDataForPhotoList = [
 
 const displayPhotoListItems = (data) => {
   return data.map((photo) => {
-    console.log(photo);
-    <PhotoListItem key={photo.id} photo={photo} />
+    
+   return <PhotoListItem key={photo.id} photo={photo} />
   })
 }
 
