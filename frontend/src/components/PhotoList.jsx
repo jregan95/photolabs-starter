@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../styles/PhotoList.scss";
+import PhotoListItem from './PhotoListItem';
 
 const sampleDataForPhotoList = [
   {
@@ -57,18 +58,20 @@ const sampleDataForPhotoList = [
 ];
 
 const displayPhotoListItems = (data) => {
-  data.map(() => {
-
+  return data.map((photo) => {
+    console.log(photo);
+    <PhotoListItem key={photo.id} photo={photo} />
   })
 }
 
+//LARRY AI - Can you help? I am unsure what is being asked. Nothing shows on my page? 
 const PhotoList = () => {
   return (
     <ul className="photo-list">
-      {/* Insert React */}
+      {displayPhotoListItems(sampleDataForPhotoList)}
     </ul>
   );
 };
 
-//LARRY AI - Can you help? I am unsure what is being asked.
+
 export default PhotoList;

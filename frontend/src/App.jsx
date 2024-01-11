@@ -1,6 +1,8 @@
 import React from 'react';
 
 import PhotoListItem from './components/PhotoListItem';
+import PhotoList from './components/PhotoList';
+
 import './App.scss';
 
 
@@ -27,7 +29,7 @@ import './App.scss';
 const App = () => {
   return (
     <div className="App">
-      {/*renderNumberOfPhotos(3)*/}
+      <PhotoList />
     </div>
   );
 };
