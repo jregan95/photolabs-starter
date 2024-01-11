@@ -14,7 +14,7 @@ function PhotoFavButton() {
     <div className="photo-list__fav-icon">
       <div onClick={like} className="photo-list__fav-icon-svg">
         
-          <FavIcon selected={heart}/>
+          <FavIcon displayAlert={heart} selected={heart}/>
         
       </div>
     </div>

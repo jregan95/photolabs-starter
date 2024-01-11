@@ -56,6 +56,12 @@ const sampleDataForPhotoList = [
   },
 ];
 
+const displayPhotoListItems = (data) => {
+  data.map(() => {
+
+  })
+}
+
 const PhotoList = () => {
   return (
     <ul className="photo-list">
@@ -64,4 +70,5 @@ const PhotoList = () => {
   );
 };
 
+//LARRY AI - Can you help? I am unsure what is being asked.
 export default PhotoList;
