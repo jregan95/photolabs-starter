@@ -10,18 +10,19 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-let favourites = []
+const [favourites, setFavourites] = useState([])
 
 const favouritesData = (photoID) => {
   if(!favourites.includes(photoID)) {
-    favourites.push(photoID);
+    setFavourites((prevFavourites) => [...prevFavourites, photoID])
+    return favourites;
   } else {
-    favourites = favourites.filter((item) => {
-      return item !== photoID
-    })
-  }
-  console.log(favourites)
-  return favourites;
+    const updatedFavourites = favourites.filter((fav) => fav !== photoID);
+    setFavourites(updatedFavourites);
+    return favourites
+    }
+  
+  
 }
 
   return (
