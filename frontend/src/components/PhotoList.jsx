@@ -4,7 +4,9 @@ import "../styles/PhotoList.scss";
 import PhotoListItem from './PhotoListItem';
 
 
+
 const PhotoList = (props) => {
+  
  
   const displayPhotoListItems = (data, favData, setModality, setId) => {
    

@@ -6,8 +6,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 
 const PhotoListItem = (props) => {
- //console.log("Component PhotoListItem: ", props.photo.id)
- console.log(props.setId)
+ 
   const handleClick = (id) => {
     
     props.setModality();
