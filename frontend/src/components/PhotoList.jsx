@@ -6,15 +6,16 @@ import PhotoListItem from './PhotoListItem';
 
 const PhotoList = (props) => {
  
-  const displayPhotoListItems = (data) => {
+  const displayPhotoListItems = (data, favData) => {
+    
     return data.map((photo) => {
-     return <PhotoListItem key={photo.id} photo={photo} />
+     return <PhotoListItem key={photo.id} photo={photo} favData={favData} />
     })
   }
 
   return (
     <ul className="top-nav-bar__topic-list">
-      {displayPhotoListItems(props.photoData)}
+      {displayPhotoListItems(props.photoData, props.favData)}
     </ul>
   );
 };

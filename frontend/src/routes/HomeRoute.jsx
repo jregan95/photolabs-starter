@@ -10,15 +10,25 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  //Larry AI.. help with building the functions?
-const favourites = () => {
+let favourites = []
 
+const favouritesData = (photoID) => {
+  if(!favourites.includes(photoID)) {
+    favourites.push(photoID);
+  } else {
+    favourites = favourites.filter((item) => {
+      return item !== photoID
+    })
+  }
+  console.log(favourites)
+  return favourites;
 }
+
   return (
     <div className="home-route">
      <TopNavigation topicData={props.topicData} />
       
-      <PhotoList photoData={props.photoData} />
+      <PhotoList photoData={props.photoData} favData={favouritesData} />
     </div>
   );
 };
