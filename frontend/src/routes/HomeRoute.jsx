@@ -29,8 +29,7 @@ const ifFavouritesExist = () => {
   return favourites.length > 0;
   }
 
-  console.log(props)
-
+  
   return (
     <div className="home-route">
      <TopNavigation topicData={props.topicData} favData={ifFavouritesExist}/>

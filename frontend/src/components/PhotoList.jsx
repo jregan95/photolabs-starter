@@ -9,7 +9,7 @@ const PhotoList = (props) => {
   const displayPhotoListItems = (data, favData, setModality, id) => {
     
     return data.map((photo) => {
-     return <PhotoListItem key={photo.id} photo={photo} favData={favData} setModality={setModality} id={id}/>
+     return <PhotoListItem key={photo.id} photo={photo} favData={favData} setModality={setModality} id={props.id}/>
     })
   }
 

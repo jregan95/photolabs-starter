@@ -14,13 +14,13 @@ import useId from './hooks/setId';
 const App = () => {
 
   const [modality, setModality] = useTrue(false)
-  const [id, setId] = useId('') 
+  const [id, setId] = useId({}) 
 
   
   return (
     <div className="App">
       <HomeRoute topicData={topics} photoData={photos} setModality={setModality} id={setId}/>
-      {modality && <PhotoDetailsModal id={setId} modality={setModality}/>}
+      {modality && <PhotoDetailsModal  modality={setModality} id={id}/>}
     </div> 
   );
 };
