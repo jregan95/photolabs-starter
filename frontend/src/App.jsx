@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute topicData={topics} photoData={photos} setModality={setModality} id={setId}/>
-      {modality && <PhotoDetailsModal id={setId}/>}
+      {modality && <PhotoDetailsModal id={setId} modality={setModality}/>}
     </div> 
   );
 };
