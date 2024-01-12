@@ -6,20 +6,22 @@ import PhotoListItem from './PhotoListItem';
 
 
 const PhotoList = (props) => {
+
+  const {photoData, favData, setOpenModal, setPhotoInfo} = props
   
- 
-  const displayPhotoListItems = (data, favData, setModality, setId) => {
-   
+  //Function to render invidual photo items based on the data
+  const displayPhotoListItems = (data, favData, setModality, setPhotoInfo) => {
     return data.map((photo) => {
-     return <PhotoListItem key={photo.id} photo={photo} favData={favData} setModality={setModality} setId={setId}/>
+     return <PhotoListItem key={photo.id} photo={photo} favData={favData} setModality={setModality} setPhotoInfo={setPhotoInfo}/>
     })
   }
 
   return (
     <ul className="top-nav-bar__topic-list">
-      {displayPhotoListItems(props.photoData, props.favData, props.setModality, props.setId)}
+      {displayPhotoListItems(photoData, favData, setOpenModal, setPhotoInfo)}
     </ul>
   );
+
 };
 
 

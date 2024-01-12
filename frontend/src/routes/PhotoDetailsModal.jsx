@@ -7,7 +7,10 @@ import PhotoFavButton from 'components/PhotoFavButton';
 
 
 const PhotoDetailsModal = (props) => {
-  let photoObject = props.id.similar_photos 
+  
+  const modalPhoto = props.photoInfo
+  let photoObject = modalPhoto.similar_photos 
+ 
   
   const newData = []
   for(let photo in photoObject) {
@@ -17,21 +20,21 @@ const PhotoDetailsModal = (props) => {
   console.log(newData)
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={props.modality}>
+      <button className="photo-details-modal__close-button" onClick={props.setOpenModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <div className ="photo-list__item">
-       <PhotoFavButton favData={props.favData} photo={props.id.id}/>
-        <img className="photo-list__image" src={props.id.urls.regular}></img>
+       <PhotoFavButton favData={props.favData} photo={modalPhoto.id}/>
+        <img className="photo-list__image" src={modalPhoto.urls.regular}></img>
           <div className="photo-list__user-details">
-             <img className="photo-list__user-profile"src={props.id.user.profile}></img>
+             <img className="photo-list__user-profile"src={modalPhoto.user.profile}></img>
                 <div className="photo-list__user-info">
-                  <div>{props.id.user.username}</div>
-                  <div className="photo-list__user-location">{props.id.location.city} {props.id.location.country}</div>
+                  <div>{modalPhoto.user.username}</div>
+                  <div className="photo-list__user-location">{modalPhoto.location.city} {modalPhoto.location.country}</div>
                 </div>  
           </div>
     </div>
-      <PhotoList photoData={newData} favData={props.favData} setModality={props.setModality} setId={props.setId} />
+      <PhotoList photoData={newData} favData={props.favData} setOpenModal={props.setOpenModal} setPhotoInfo={props.setPhotoInfo} />
   
     </div>
   )
