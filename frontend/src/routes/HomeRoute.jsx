@@ -34,7 +34,7 @@ const ifFavouritesExist = () => {
     <div className="home-route">
      <TopNavigation topicData={props.topicData} favData={ifFavouritesExist}/>
       
-      <PhotoList photoData={props.photoData} favData={favouritesData} setModality={props.setModality} id={props.id} />
+      <PhotoList photoData={props.photoData} favData={favouritesData} setModality={props.setModality} setId={props.setId} />
     </div>
   );
 };
