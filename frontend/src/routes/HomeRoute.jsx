@@ -26,18 +26,16 @@ const favouritesData = (photoID) => {
 }
 
 const ifFavouritesExist = () => {
-  if(favourites.length > 0) {
-    return true
-  } else {
-    return false
+  return favourites.length > 0;
   }
-}
+
+  console.log(props)
 
   return (
     <div className="home-route">
      <TopNavigation topicData={props.topicData} favData={ifFavouritesExist}/>
       
-      <PhotoList photoData={props.photoData} favData={favouritesData} />
+      <PhotoList photoData={props.photoData} favData={favouritesData} setModality={props.setModality} />
     </div>
   );
 };
