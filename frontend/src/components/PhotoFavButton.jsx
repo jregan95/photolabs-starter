@@ -14,7 +14,6 @@ function PhotoFavButton(props) {
   
 
   const handleClick = () => {
-    console.log(props.photo)
     like();
     props.favData(props.photo);
   }

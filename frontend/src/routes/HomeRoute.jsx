@@ -22,12 +22,20 @@ const favouritesData = (photoID) => {
     return favourites
     }
   
-  
+    
+}
+
+const ifFavouritesExist = () => {
+  if(favourites.length > 0) {
+    return true
+  } else {
+    return false
+  }
 }
 
   return (
     <div className="home-route">
-     <TopNavigation topicData={props.topicData} />
+     <TopNavigation topicData={props.topicData} favData={ifFavouritesExist}/>
       
       <PhotoList photoData={props.photoData} favData={favouritesData} />
     </div>
