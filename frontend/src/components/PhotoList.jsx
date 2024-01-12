@@ -17,9 +17,11 @@ const PhotoList = (props) => {
   }
 
   return (
-    <ul className="top-nav-bar__topic-list">
+    <div className="top-nav-bar__topic-list">
+      
       {displayPhotoListItems(photoData, favData, setOpenModal, setPhotoInfo)}
-    </ul>
+      
+    </div>
   );
 
 };

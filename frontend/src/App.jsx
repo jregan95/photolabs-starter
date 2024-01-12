@@ -16,6 +16,7 @@ const App = () => {
 
   //Creates a favourites data array to hold users favourites in memory
   const favouritesData = (photoID) => {
+    
     if(!favourites.includes(photoID)) {
       setFavourites((prevFavourites) => [...prevFavourites, photoID])
       return favourites;
@@ -25,6 +26,8 @@ const App = () => {
       return favourites
       }   
   }
+
+  console.log(favourites)
 
   //Used to give heart notification if a user has favourited any data
   const ifFavouritesExist = () => {
@@ -42,7 +45,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute topicData={topics} photoData={photos} setOpenModal={setOpenModal} setPhotoInfo={setPhotoInfo} iffavData={ifFavouritesExist} favData={favouritesData}/>
-      {openModal && <PhotoDetailsModal  setOpenModal={setOpenModal} photoInfo={photoInfo}/>}
+      {openModal && <PhotoDetailsModal  setOpenModal={setOpenModal} photoInfo={photoInfo} favData={favouritesData}/>}
     </div> 
   );
 };
