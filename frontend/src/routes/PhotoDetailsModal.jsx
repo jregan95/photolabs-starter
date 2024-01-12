@@ -9,15 +9,13 @@ import PhotoFavButton from 'components/PhotoFavButton';
 const PhotoDetailsModal = (props) => {
   
   const modalPhoto = props.photoInfo
-  let photoObject = modalPhoto.similar_photos 
+  let photosObject = modalPhoto.similar_photos 
  
+  //Turns similar photos object into an array
+  const similarPhotosArray = Object.values(photosObject);
   
-  const newData = []
-  for(let photo in photoObject) {
-    newData.push(photoObject[photo])
-  }
 
-  console.log(newData)
+  
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={props.setOpenModal}>
@@ -34,7 +32,10 @@ const PhotoDetailsModal = (props) => {
                 </div>  
           </div>
     </div>
-      <PhotoList photoData={newData} favData={props.favData} setOpenModal={props.setOpenModal} setPhotoInfo={props.setPhotoInfo} />
+    <div className="photo-details-modal__header">
+      Similar Photos
+    </div>
+      <PhotoList photoData={similarPhotosArray} favData={props.favData} setOpenModal={props.setOpenModal} setPhotoInfo={props.setPhotoInfo} />
   
     </div>
   )
