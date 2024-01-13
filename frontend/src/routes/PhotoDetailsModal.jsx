@@ -9,9 +9,9 @@ import PhotoFavButton from 'components/PhotoFavButton';
 const PhotoDetailsModal = (props) => {
   
   const modalPhoto = props.photoInfo
+
   let photosObject = modalPhoto.similar_photos || {};
- 
-  //Turns similar photos object into an array
+
   const similarPhotosArray = Object.values(photosObject);
   
 
