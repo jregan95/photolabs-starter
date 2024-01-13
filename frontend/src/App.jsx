@@ -27,7 +27,7 @@ const App = () => {
       }   
   }
 
-  console.log(favourites)
+  
 
   //Used to give heart notification if a user has favourited any data
   const ifFavouritesExist = () => {
