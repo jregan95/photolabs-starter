@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -6,8 +6,10 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  TOGGLE_MODAL: 'TOGGLE_MODAL'
 }
+
 
 
 function reducer(state, action) {
@@ -32,7 +34,10 @@ function reducer(state, action) {
 
     case ACTIONS.SET_TOPIC_DATA:
       return {...state, topicData: action.payload}
-      
+
+    case ACTIONS.TOGGLE_MODAL:
+      return {...state, openModal: action.payload}
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -43,35 +48,31 @@ function reducer(state, action) {
 
 const useApplicationData = () => {
 
-  const [state, setState] = useState({
+  const initialState = {
     openModal: false,
     favourites: [],
     photoInfo: null,
-  });
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState)
 
 
   const openModal = () => {
-    setState(prev => ({ openModal: !prev.openModal }));
+    dispatch({type: ACTIONS.TOGGLE_MODAL, payload: !state.openModal});
   };
 
   const setPhotoInfo = (value) => {
-    setState(prev => ({ ...prev, photoInfo: value }));
+    dispatch({type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: value});
   };
 
 
   const favouritesData = (photoID) => {
-
-    setState((prev) => { 
-      const currentFavourites = prev.favourites || [];
-      if(!currentFavourites.includes(photoID)) {
-        return {...prev, favourites: [...currentFavourites, photoID]}
-      
-    } else {
-      const updatedFavourites = currentFavourites.filter((fav) => fav !== photoID);
-      
-      return { ...prev, favourites: updatedFavourites };
-      }   
-    })
+      if(state.favourites.includes(photoID)) {
+        const updatedFavourites = currentFavourites.filter((fav) => fav !== photoID);
+        dispatch({type: ACTIONS.FAV_PHOTO_REMOVED, payload: updatedFavourites})
+      } else {
+      dispatch({type: ACTIONS.FAV_PHOTO_ADDED, payload: photoID})
+    }
   }
   
   //Used to give heart notification if a user has favourited any data
