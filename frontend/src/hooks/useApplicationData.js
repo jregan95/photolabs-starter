@@ -1,5 +1,12 @@
 import { useReducer, useState, useEffect } from 'react';
 
+//[{"id":1,"title":"People","slug":"people"},
+//{"id":2,"title":"Nature","slug":"nature"},
+//{"id":3,"title":"Travel","slug":"travel"}
+//{"id":4,"title":"Animals","slug":"animals"},
+//{"id":5,"title":"Fashion","slug":"fashion"}]
+
+
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
@@ -7,7 +14,8 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  TOGGLE_MODAL: 'TOGGLE_MODAL'
+  TOGGLE_MODAL: 'TOGGLE_MODAL',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 }
 
 const initialState = {
@@ -15,7 +23,8 @@ const initialState = {
   favourites: [],
   photoInfo: null,
   photoData: [],
-  topicData: []
+  topicData: [],
+  topic: null
 };
 
 
@@ -45,6 +54,9 @@ function reducer(state, action) {
     case ACTIONS.TOGGLE_MODAL:
       return {...state, openModal: action.payload}
 
+      case ACTIONS.GET_PHOTOS_BY_TOPICS:
+        return {...state, topic: action.payload}
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -68,7 +80,20 @@ const useApplicationData = () => {
     fetch(`api/topics`)
     .then(res => res.json())
     .then(data => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data}))
-  })
+  }, [])
+
+  useEffect(() => {
+    if(state.topic) {
+    fetch(`api/topics/photos/${state.topic}`)
+    .then(res => res.json())
+    .then(data => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+    }
+  }, [state.topic])
+
+
+  const showByTopic = (topicId) => {
+    dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: topicId });
+  }
 
   const openModal = () => {
     dispatch({type: ACTIONS.TOGGLE_MODAL, payload: !state.openModal});
@@ -98,7 +123,8 @@ const useApplicationData = () => {
       openModal,
       setPhotoInfo,
       favouritesData,
-      ifFavouritesExist
+      ifFavouritesExist,
+      showByTopic
     }
   
 };

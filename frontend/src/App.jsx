@@ -16,7 +16,8 @@ const App = () => {
     openModal,
     setPhotoInfo,
     favouritesData,
-    ifFavouritesExist
+    ifFavouritesExist,
+    showByTopic
   } = useApplicationData();
 
   //Used to give heart notification if a user has favourited any data
@@ -26,7 +27,7 @@ const App = () => {
   
   return (
     <div className="App">
-      <HomeRoute topicData={state.topicData} photoData={state.photoData} setOpenModal={openModal} setPhotoInfo={setPhotoInfo} iffavData={ifFavouritesExist} favData={favouritesData} state={state}/>
+      <HomeRoute topicData={state.topicData} photoData={state.photoData} setOpenModal={openModal} setPhotoInfo={setPhotoInfo} iffavData={ifFavouritesExist} favData={favouritesData} state={state} showByTopic={showByTopic}/>
       {state.openModal && <PhotoDetailsModal  setOpenModal={openModal} photoInfo={state.photoInfo} favData={favouritesData} state={state} ifFavouritesExist={ifFavouritesExist}/>}
     </div> 
   );

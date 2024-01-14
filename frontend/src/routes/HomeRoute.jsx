@@ -7,11 +7,11 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const {topicData, iffavData, photoData, favData, setOpenModal, setPhotoInfo, state} = props
+  const {topicData, iffavData, photoData, favData, setOpenModal, setPhotoInfo, state, showByTopic} = props
 
   return (
     <div className="home-route">
-     <TopNavigation topicData={topicData} favData={iffavData}/>
+     <TopNavigation topicData={topicData} showByTopic={showByTopic} favData={iffavData}/>
       
       <PhotoList photoData={photoData} favData={favData} setOpenModal={setOpenModal} setPhotoInfo={setPhotoInfo} state={state}/>
     </div>
