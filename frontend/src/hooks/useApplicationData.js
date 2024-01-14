@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -14,6 +14,8 @@ const initialState = {
   openModal: false,
   favourites: [],
   photoInfo: null,
+  photoData: [],
+  topicData: []
 };
 
 
@@ -56,6 +58,17 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  useEffect(() => { 
+    fetch(`api/photos`)
+    .then(res => res.json())
+    .then(data => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+  }, [])
+
+  useEffect(() => {
+    fetch(`api/topics`)
+    .then(res => res.json())
+    .then(data => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data}))
+  })
 
   const openModal = () => {
     dispatch({type: ACTIONS.TOGGLE_MODAL, payload: !state.openModal});

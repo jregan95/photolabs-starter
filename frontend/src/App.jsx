@@ -26,7 +26,7 @@ const App = () => {
   
   return (
     <div className="App">
-      <HomeRoute topicData={topics} photoData={photos} setOpenModal={openModal} setPhotoInfo={setPhotoInfo} iffavData={ifFavouritesExist} favData={favouritesData} state={state}/>
+      <HomeRoute topicData={state.topicData} photoData={state.photoData} setOpenModal={openModal} setPhotoInfo={setPhotoInfo} iffavData={ifFavouritesExist} favData={favouritesData} state={state}/>
       {state.openModal && <PhotoDetailsModal  setOpenModal={openModal} photoInfo={state.photoInfo} favData={favouritesData} state={state} ifFavouritesExist={ifFavouritesExist}/>}
     </div> 
   );
