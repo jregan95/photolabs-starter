@@ -10,6 +10,11 @@ export const ACTIONS = {
   TOGGLE_MODAL: 'TOGGLE_MODAL'
 }
 
+const initialState = {
+  openModal: false,
+  favourites: [],
+  photoInfo: null,
+};
 
 
 function reducer(state, action) {
@@ -20,14 +25,14 @@ function reducer(state, action) {
     
 
     case ACTIONS.FAV_PHOTO_REMOVED:
-      return {...state, favourites: state.favourites.filter((id) => id !== action.payload)
+      return {...state, favourites: action.payload
       }
 
     case ACTIONS.SELECT_PHOTO:
       return {...state, photoInfo: action.payload}
 
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
-      return{...state, photoInfo}
+      return{...state, photoInfo: action.payload}
 
     case ACTIONS.SET_PHOTO_DATA:
       return {...state, photoData: action.payload}
@@ -48,11 +53,6 @@ function reducer(state, action) {
 
 const useApplicationData = () => {
 
-  const initialState = {
-    openModal: false,
-    favourites: [],
-    photoInfo: null,
-  };
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -68,7 +68,7 @@ const useApplicationData = () => {
 
   const favouritesData = (photoID) => {
       if(state.favourites.includes(photoID)) {
-        const updatedFavourites = currentFavourites.filter((fav) => fav !== photoID);
+        const updatedFavourites = state.favourites.filter((fav) => fav !== photoID);
         dispatch({type: ACTIONS.FAV_PHOTO_REMOVED, payload: updatedFavourites})
       } else {
       dispatch({type: ACTIONS.FAV_PHOTO_ADDED, payload: photoID})

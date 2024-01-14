@@ -44,7 +44,7 @@ const PhotoDetailsModal = (props) => {
       </div>
 
       <div className="photo-details-modal__images"> 
-        <PhotoList photoData={similarPhotosArray} favData={props.favData} setOpenModal={props.setOpenModal} setPhotoInfo={props.setPhotoInfo} />
+        <PhotoList photoData={similarPhotosArray} favData={props.favData} setOpenModal={props.setOpenModal} setPhotoInfo={props.setPhotoInfo} state={props.state}/>
       </div>
 
     </div>

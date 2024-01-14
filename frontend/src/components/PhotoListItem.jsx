@@ -7,7 +7,9 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   
-  const {favData, photo, setModality, setPhotoInfo } = props
+  const {favData, photo, setModality, setPhotoInfo, state } = props
+
+  console.log(state)
   
   //Fucntion to open the modal (or close it) and function to grab photo data for clicked on photo
   const handleClick = (id) => {
@@ -19,7 +21,7 @@ const PhotoListItem = (props) => {
     
     <div className ="photo-list__item">
       <div>
-       <PhotoFavButton favData={favData} photo={photo.id}/>
+       <PhotoFavButton favData={favData} photo={photo.id} favourited={state}/>
         <img onClick={() => handleClick(photo)} className="photo-list__image" src={photo.urls.full}></img>
         </div>
         <div>

@@ -4,8 +4,9 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-
-  const {favData, photo, } = props
+  
+  const {favData, photo, favourited} = props
+ 
   
   //Will set the state of the heart from empty to full when 'liked'
   const [heart, setHeart] = useState(false)
@@ -23,10 +24,11 @@ function PhotoFavButton(props) {
     favData(photo);
   }
 
+  
   return (
     <div className="photo-list__fav-icon">
       <div onClick={handleClick} className="photo-list__fav-icon-svg">
-          <FavIcon displayAlert={heart} selected={heart}/>
+          <FavIcon  selected={heart}/>
       </div>
     </div>
   );

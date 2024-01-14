@@ -17,10 +17,10 @@ const PhotoList = (props) => {
   }
 
   return (
-    <div className="top-nav-bar__topic-list">
-      <div>
+    <div className="photo-list">
+      
       {displayPhotoListItems(photoData, favData, setOpenModal, setPhotoInfo, state)}
-      </div>
+      
     </div>
   );
 

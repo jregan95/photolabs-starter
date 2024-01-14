@@ -7,6 +7,7 @@ import FavBadge from './FavBadge';
 const TopNavigation = (props) => {
     let favouriteExists = props.favData();
     
+    
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
