@@ -4,6 +4,7 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
+import PhotoListItem from 'components/PhotoListItem';
 
 
 const PhotoDetailsModal = (props) => {
@@ -16,8 +17,8 @@ const PhotoDetailsModal = (props) => {
   const similarPhotosArray = Object.values(photosObject);
   
   const {favData, ifPhotoShouldHaveHeart, setOpenModal, setPhotoInfo} = props
-
   
+
   return (
     <div className="photo-details-modal">
 
@@ -30,13 +31,15 @@ const PhotoDetailsModal = (props) => {
           <PhotoFavButton favData={favData} photo={modalPhoto.id} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
             <img className="photo-details-modal__image" src={modalPhoto.urls.full}></img>
               <div className="photo-details-modal__header">
+                <div className='photo-details-modal__photographer-details'>
                 <img className="photo-details-modal__photographer-profile"src={modalPhoto.user.profile}></img>
-                <div className="photo-details-modal__photographer-details">
-                    <div className="photo-details-modal__photographer-info">
+                <div className="photo-details-modal__photographer-info">
+                    
                       <div>{modalPhoto.user.username}</div>
                       <div className="photo-details-modal__photographer-location">{modalPhoto.location.city} {modalPhoto.location.country}</div>
-                      </div>
-                    </div>  
+                      
+                    </div> 
+                    </div> 
               </div>
           </div>
       </div>
