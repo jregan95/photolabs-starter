@@ -1,10 +1,5 @@
 import { useReducer, useEffect } from 'react';
 
-//[{"id":1,"title":"People","slug":"people"},
-//{"id":2,"title":"Nature","slug":"nature"},
-//{"id":3,"title":"Travel","slug":"travel"}
-//{"id":4,"title":"Animals","slug":"animals"},
-//{"id":5,"title":"Fashion","slug":"fashion"}]
 
 
 export const ACTIONS = {
@@ -19,6 +14,7 @@ export const ACTIONS = {
   LIKED_PHOTO: 'LIKED_PHOTO'
 }
 
+
 const initialState = {
   openModal: false,
   favourites: [],
@@ -31,17 +27,18 @@ const initialState = {
 
 
 function reducer(state, action) {
+  
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
       return {...state, favourites: [...state.favourites, action.payload]}
-    { /* insert all relevant actions as case statements*/ }  
+
     case ACTIONS.LIKED_PHOTO:
       return {...state, liked: action.payload}
 
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {...state, favourites: action.payload
       }
-
+  
     case ACTIONS.SELECT_PHOTO:
       return {...state, photoInfo: action.payload}
 
@@ -73,18 +70,21 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  //Returns data for photos
   useEffect(() => { 
     fetch(`api/photos`)
     .then(res => res.json())
     .then(data => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}))
   }, [])
 
+  //Returns data for topics
   useEffect(() => {
     fetch(`api/topics`)
     .then(res => res.json())
     .then(data => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data}))
   }, [])
 
+  //Returns photos for specific topics
   useEffect(() => {
     if(state.topic) {
     fetch(`api/topics/photos/${state.topic}`)
@@ -93,27 +93,26 @@ const useApplicationData = () => {
     }
   }, [state.topic])
 
-
+  //Shows images based on secific topic by basing in a topic ID
   const showByTopic = (topicId) => {
     dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: topicId });
   }
 
+  // Toggels the modal 
   const openModal = () => {
     dispatch({type: ACTIONS.TOGGLE_MODAL, payload: !state.openModal});
   };
 
+  //Grabs the photos info based on its id
   const setPhotoInfo = (value) => {
     dispatch({type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: value});
   };
 
+  //Adds an image to a liked array and removes it if unliked
   const like = (photoID) => {
-    
     const updatedLikedPhotos = state.liked.includes(photoID)
       ? state.liked.filter((likedPhoto) => likedPhoto !== photoID)
-      : [...state.liked, photoID];
-    
-      
-      
+      : [...state.liked, photoID]; 
     dispatch({ type: ACTIONS.LIKED_PHOTO, payload: updatedLikedPhotos });
 
     if (updatedLikedPhotos.includes(photoID)) {
@@ -121,8 +120,7 @@ const useApplicationData = () => {
     }
   };
 
- 
-
+ //Adds images to a favourites data array
   const favouritesData = (photoID) => {
       if(state.favourites.includes(photoID)) {
         const updatedFavourites = state.favourites.filter((fav) => fav !== photoID);
@@ -132,6 +130,7 @@ const useApplicationData = () => {
     }
   }
 
+  //Returns true or false if a photo is liked to toggel the fav icon
   const ifPhotoShouldHaveHeart = (photoID) => {
     return state.liked.includes(photoID);
   };
@@ -141,6 +140,7 @@ const useApplicationData = () => {
     return state.favourites && state.favourites.length > 0;
     }
 
+    
     return {
       state,
       openModal,
