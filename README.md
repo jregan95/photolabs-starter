@@ -25,7 +25,8 @@ npm start
 
 # Screenshots
 
-
+!["Screenshot of main page layour"](https://github.com/jregan95/photolabs-starter/blob/main/docs/screenshots/screenshot1.png?raw=true)
+!["Screenshot of modal"](https://github.com/jregan95/photolabs-starter/blob/main/docs/screenshots/screenshot2.png?raw=true)
 
 # Project Description
 PhotoLabs is a React-based Single Page Application (SPA) designed to allow users to view photos in various contexts. We utilize a pre-existing API to build a frontend user experience for interacting with photos.
