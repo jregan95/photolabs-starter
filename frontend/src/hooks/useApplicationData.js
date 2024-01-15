@@ -108,18 +108,6 @@ const useApplicationData = () => {
     dispatch({type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: value});
   };
 
-  //Adds an image to a liked array and removes it if unliked
-  const like = (photoID) => {
-    const updatedLikedPhotos = state.liked.includes(photoID)
-      ? state.liked.filter((likedPhoto) => likedPhoto !== photoID)
-      : [...state.liked, photoID]; 
-    dispatch({ type: ACTIONS.LIKED_PHOTO, payload: updatedLikedPhotos });
-
-    if (updatedLikedPhotos.includes(photoID)) {
-      favouritesData(photoID);
-    }
-  };
-
  //Adds images to a favourites data array
   const favouritesData = (photoID) => {
       if(state.favourites.includes(photoID)) {
@@ -132,7 +120,7 @@ const useApplicationData = () => {
 
   //Returns true or false if a photo is liked to toggel the fav icon
   const ifPhotoShouldHaveHeart = (photoID) => {
-    return state.liked.includes(photoID);
+    return state.favourites.includes(photoID);
   };
   
   //Used to give heart notification if a user has favourited any data
@@ -140,7 +128,7 @@ const useApplicationData = () => {
     return state.favourites && state.favourites.length > 0;
     }
 
-    
+
     return {
       state,
       openModal,
