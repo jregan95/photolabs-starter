@@ -10,7 +10,9 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
-  LIKED_PHOTO: 'LIKED_PHOTO'
+  LIKED_PHOTO: 'LIKED_PHOTO',
+  GET_PHOTOS_BY_FAVOURITES: 'GET_PHOTOS_BY_FAVOURITES',
+  SET_ORIGINAL_PHOTO_DATA: "SET_ORIGINAL_PHOTO_DATA"
 }
 
 
@@ -28,6 +30,13 @@ const initialState = {
 function reducer(state, action) {
   
   switch (action.type) {
+
+    case ACTIONS.GET_PHOTOS_BY_FAVOURITES:
+      return {...state, photoData:  action.payload}
+
+      case ACTIONS.SET_ORIGINAL_PHOTO_DATA:
+        return {...state, photoData:  action.payload}
+
     case ACTIONS.FAV_PHOTO_ADDED:
       return {...state, favourites: [...state.favourites, action.payload]}
 
@@ -55,6 +64,8 @@ function reducer(state, action) {
 
       case ACTIONS.GET_PHOTOS_BY_TOPICS:
         return {...state, topic: action.payload}
+
+      
 
     default:
       throw new Error(
@@ -115,6 +126,7 @@ const useApplicationData = () => {
       } else {
       dispatch({type: ACTIONS.FAV_PHOTO_ADDED, payload: photoID})
     }
+
   }
 
   //Returns true or false if a photo is liked to toggel the fav icon
@@ -127,6 +139,18 @@ const useApplicationData = () => {
     return state.favourites && state.favourites.length > 0;
     }
 
+  //Returns data for only favourited photos to display in the favourites tab
+  const getFavouritedPhotos = (photoData, favourites) => {
+    
+    const updatedPhotoData = [ ... photoData]
+    const results = updatedPhotoData.filter((item) => favourites.includes(item.id))
+    dispatch({ type: ACTIONS.GET_PHOTOS_BY_FAVOURITES, payload: results });
+    
+  }
+
+  const homePageData = (photoData) => {
+    dispatch({type: ACTIONS.SET_ORIGINAL_PHOTO_DATA, payload: photoData})
+  };
 
     return {
       state,
@@ -135,7 +159,9 @@ const useApplicationData = () => {
       favouritesData,
       ifFavouritesExist,
       showByTopic,
-      ifPhotoShouldHaveHeart
+      ifPhotoShouldHaveHeart,
+      getFavouritedPhotos,
+      homePageData
     }
   
 };

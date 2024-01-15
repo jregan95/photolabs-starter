@@ -15,7 +15,9 @@ const App = () => {
     favouritesData,
     ifFavouritesExist,
     showByTopic,
-    ifPhotoShouldHaveHeart
+    ifPhotoShouldHaveHeart,
+    getFavouritedPhotos,
+    homePageData
   } = useApplicationData();
 
   
@@ -31,6 +33,10 @@ const App = () => {
       favData={favouritesData} 
       showByTopic={showByTopic} 
       ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart} 
+      favourites={state.favourites}
+      getFavouritedPhotos={getFavouritedPhotos}
+
+      homePageData={homePageData}
       />
 
       {state.openModal && <PhotoDetailsModal  
