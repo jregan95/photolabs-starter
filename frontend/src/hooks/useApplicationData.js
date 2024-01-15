@@ -15,7 +15,8 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  LIKED_PHOTO: 'LIKED_PHOTO'
 }
 
 const initialState = {
@@ -24,7 +25,8 @@ const initialState = {
   photoInfo: null,
   photoData: [],
   topicData: [],
-  topic: null
+  topic: null,
+  liked: []
 };
 
 
@@ -33,7 +35,8 @@ function reducer(state, action) {
     case ACTIONS.FAV_PHOTO_ADDED:
       return {...state, favourites: [...state.favourites, action.payload]}
     { /* insert all relevant actions as case statements*/ }  
-    
+    case ACTIONS.LIKED_PHOTO:
+      return {...state, liked: action.payload}
 
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {...state, favourites: action.payload
@@ -103,6 +106,22 @@ const useApplicationData = () => {
     dispatch({type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: value});
   };
 
+  const like = (photoID) => {
+    
+    const updatedLikedPhotos = state.liked.includes(photoID)
+      ? state.liked.filter((likedPhoto) => likedPhoto !== photoID)
+      : [...state.liked, photoID];
+    
+      
+      
+    dispatch({ type: ACTIONS.LIKED_PHOTO, payload: updatedLikedPhotos });
+
+    if (updatedLikedPhotos.includes(photoID)) {
+      favouritesData(photoID);
+    }
+  };
+
+ 
 
   const favouritesData = (photoID) => {
       if(state.favourites.includes(photoID)) {
@@ -112,6 +131,10 @@ const useApplicationData = () => {
       dispatch({type: ACTIONS.FAV_PHOTO_ADDED, payload: photoID})
     }
   }
+
+  const ifPhotoShouldHaveHeart = (photoID) => {
+    return state.liked.includes(photoID);
+  };
   
   //Used to give heart notification if a user has favourited any data
   const ifFavouritesExist = () => {
@@ -124,7 +147,9 @@ const useApplicationData = () => {
       setPhotoInfo,
       favouritesData,
       ifFavouritesExist,
-      showByTopic
+      showByTopic,
+      like,
+      ifPhotoShouldHaveHeart
     }
   
 };
