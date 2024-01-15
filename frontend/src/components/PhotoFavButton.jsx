@@ -5,12 +5,12 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
   
-  const {favData, photo, ifPhotoShouldHaveHeart, like} = props
+  const {favData, photo, ifPhotoShouldHaveHeart} = props
 
   
   //On click of the heart it will call the like function as well as push the image id into the favourites data
   const handleClick = () => {
-    like(photo);
+    
     favData(photo); 
   }
 

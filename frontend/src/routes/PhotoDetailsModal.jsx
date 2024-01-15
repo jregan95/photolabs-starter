@@ -15,7 +15,7 @@ const PhotoDetailsModal = (props) => {
   //SimilarPhotosArray turns the object of photos into an array
   const similarPhotosArray = Object.values(photosObject);
   
-  const {favData, like, ifPhotoShouldHaveHeart, setOpenModal, setPhotoInfo} = props
+  const {favData, ifPhotoShouldHaveHeart, setOpenModal, setPhotoInfo} = props
 
   
   return (
@@ -27,7 +27,7 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__top-bar">
         <div>
-          <PhotoFavButton favData={favData} photo={modalPhoto.id} like={like} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
+          <PhotoFavButton favData={favData} photo={modalPhoto.id} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
             <img className="photo-details-modal__image" src={modalPhoto.urls.full}></img>
               <div className="photo-details-modal__header">
                 <img className="photo-details-modal__photographer-profile"src={modalPhoto.user.profile}></img>
@@ -51,7 +51,6 @@ const PhotoDetailsModal = (props) => {
         favData={favData} 
         setOpenModal={setOpenModal} 
         setPhotoInfo={setPhotoInfo} 
-        like={like} 
         ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
       </div>
 

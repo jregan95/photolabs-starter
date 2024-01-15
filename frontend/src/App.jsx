@@ -15,7 +15,6 @@ const App = () => {
     favouritesData,
     ifFavouritesExist,
     showByTopic,
-    like,
     ifPhotoShouldHaveHeart
   } = useApplicationData();
 
@@ -32,15 +31,13 @@ const App = () => {
       favData={favouritesData} 
       showByTopic={showByTopic} 
       ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart} 
-      like={like}
       />
-      
+
       {state.openModal && <PhotoDetailsModal  
       setOpenModal={openModal} 
       photoInfo={state.photoInfo} 
       favData={favouritesData} 
       ifFavouritesExist={ifFavouritesExist} 
-      like={like} 
       ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}
       /> }
 

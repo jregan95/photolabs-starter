@@ -20,7 +20,7 @@ const PhotoListItem = (props) => {
     
     <div className ="photo-list__item">
       <div>
-       <PhotoFavButton favData={favData} photo={photo.id} favourites={favourites} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart} like={like}/>
+       <PhotoFavButton favData={favData} photo={photo.id} favourites={favourites} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
         <img onClick={() => handleClick(photo)} className="photo-list__image" src={photo.urls.full}></img>
         </div>
         <div>

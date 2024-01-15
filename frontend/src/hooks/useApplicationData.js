@@ -136,7 +136,6 @@ const useApplicationData = () => {
       favouritesData,
       ifFavouritesExist,
       showByTopic,
-      like,
       ifPhotoShouldHaveHeart
     }
   
