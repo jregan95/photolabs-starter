@@ -5,26 +5,13 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
   
-  const {favData, photo, favourites, ifPhotoShouldHaveHeart, like} = props
+  const {favData, photo, ifPhotoShouldHaveHeart, like} = props
 
-  //console.log(like)
-  
-  //Will set the state of the heart from empty to full when 'liked'
-  //const [heart, setHeart] = useState(false)
-
-  //Sets heart to true if it is false or vice versa
-  // const like = function() {
-  //   return (
-  //     heart === false ? setHeart(true) : setHeart(false)
-  //   )
-  // }
   
   //On click of the heart it will call the like function as well as push the image id into the favourites data
   const handleClick = () => {
     like(photo);
-    favData(photo);
-    //ifPhotoShouldHaveHeart(photo);
-    
+    favData(photo); 
   }
 
   

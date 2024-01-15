@@ -1,4 +1,4 @@
-import { useReducer, useState, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 
 //[{"id":1,"title":"People","slug":"people"},
 //{"id":2,"title":"Nature","slug":"nature"},

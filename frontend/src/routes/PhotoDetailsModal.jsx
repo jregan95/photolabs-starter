@@ -8,13 +8,14 @@ import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
   
+  //Declares variable for Modal Photo
   const modalPhoto = props.photoInfo
-
+  //PhotosObject is the object of similar photos. If error it will be an empty array
   let photosObject = modalPhoto.similar_photos || {};
-
+  //SimilarPhotosArray turns the object of photos into an array
   const similarPhotosArray = Object.values(photosObject);
   
-  console.log(props.ifPhotoShouldHaveHeart)
+  const {favData, like, ifPhotoShouldHaveHeart, setOpenModal, setPhotoInfo} = props
 
   
   return (
@@ -26,7 +27,7 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__top-bar">
         <div>
-          <PhotoFavButton favData={props.favData} photo={modalPhoto.id} like={props.like} ifPhotoShouldHaveHeart={props.ifPhotoShouldHaveHeart}/>
+          <PhotoFavButton favData={favData} photo={modalPhoto.id} like={like} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
             <img className="photo-details-modal__image" src={modalPhoto.urls.full}></img>
               <div className="photo-details-modal__header">
                 <img className="photo-details-modal__photographer-profile"src={modalPhoto.user.profile}></img>
@@ -47,12 +48,11 @@ const PhotoDetailsModal = (props) => {
       <div className="photo-details-modal__images"> 
         <PhotoList 
         photoData={similarPhotosArray} 
-        favData={props.favData} 
-        setOpenModal={props.setOpenModal} 
-        setPhotoInfo={props.setPhotoInfo} 
-        state={props.state} 
-        like={props.like} 
-        ifPhotoShouldHaveHeart={props.ifPhotoShouldHaveHeart}/>
+        favData={favData} 
+        setOpenModal={setOpenModal} 
+        setPhotoInfo={setPhotoInfo} 
+        like={like} 
+        ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart}/>
       </div>
 
     </div>

@@ -7,13 +7,13 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const {topicData, iffavData, photoData, favData, setOpenModal, setPhotoInfo, state, showByTopic, ifPhotoShouldHaveHeart, favourites, like} = props
+  const {topicData, iffavData, photoData, favData, setOpenModal, setPhotoInfo, showByTopic, ifPhotoShouldHaveHeart, like} = props
 
   return (
     <div className="home-route">
      <TopNavigation topicData={topicData} showByTopic={showByTopic} favData={iffavData}/>
       
-      <PhotoList photoData={photoData} favData={favData} setOpenModal={setOpenModal} setPhotoInfo={setPhotoInfo} state={state} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart} favourites={favourites} like={like}/>
+      <PhotoList photoData={photoData} favData={favData} setOpenModal={setOpenModal} setPhotoInfo={setPhotoInfo} ifPhotoShouldHaveHeart={ifPhotoShouldHaveHeart} like={like}/>
     </div>
   );
 };

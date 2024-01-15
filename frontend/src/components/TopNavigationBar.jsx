@@ -5,6 +5,7 @@ import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 
 const TopNavigation = (props) => {
+  
     let favouriteExists = props.favData();
     
     
